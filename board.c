@@ -30,6 +30,9 @@ void Main_Application(void)
         RA4_Toggle();
         delay_ms(1000);
         RA5_Toggle();
-        
+        delay_ms(1000);
+        RA6_Toggle();
+        delay_ms(1000);
+        RA7_Toggle();
     }
 }

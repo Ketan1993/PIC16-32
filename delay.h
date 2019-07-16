@@ -16,7 +16,18 @@
 extern "C" {
 #endif
 
+    /* delay in milli second 
+     * Before use this function, define the FCY XXXXX in header file and #include <libpic30.h>
+     * delay_count : delay count in milli second
+     * return      : it's delay not need of return value
+     */
     void delay_ms(int delay_count);
+
+    /* delay in micro-second 
+     * Before use this function, define the FCY XXXXX in header file and #include <libpic30.h>
+     * delay_count : delay count in micro-second
+     * return      : it's delay not need of return value
+     */
     void delay_us(int delay_count);
 
 

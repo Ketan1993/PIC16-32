@@ -18,12 +18,14 @@ extern "C" {
      * ---------  ---------
      * DEV pin  |  MCU PIN  | 
      * --------   ---------  
-     * P17_LED3 |  RA0
-     * P38_LED4 |  RA1
-     * P58_LED5 |  RA2
-     * P59_LED6 |  RA3
-     * P60_LED7 |  RA4
-     * P61_LED8 |  RA5
+     * P17_LED3  |  RA0
+     * P38_LED4  |  RA1
+     * P58_LED5  |  RA2
+     * P59_LED6  |  RA3
+     * P60_LED7  |  RA4
+     * P61_LED8  |  RA5
+     * P91_LED9  |  RA6
+     * P91_LED10 |  RA7
      */
 
 #define RA0_SetDigitalOutput()         do{ TRISAbits.TRISA0 = 0;} while(0)    
@@ -43,6 +45,13 @@ extern "C" {
 
 #define RA5_SetDigitalOutput()         do{ TRISAbits.TRISA5 = 0;} while(0)    
 #define RA5_Toggle()                   do{ LATAbits.LATA5 = ~LATAbits.LATA5; }while(0)
+
+#define RA6_SetDigitalOutput()         do{ TRISAbits.TRISA6 = 0;} while(0)    
+#define RA6_Toggle()                   do{ LATAbits.LATA6 = ~LATAbits.LATA6; }while(0)
+
+#define RA7_SetDigitalOutput()         do{ TRISAbits.TRISA7 = 0;} while(0)    
+#define RA7_Toggle()                   do{ LATAbits.LATA7 = ~LATAbits.LATA7; }while(0)
+
 
     void PIN_MANAGER_initialaztion(void);
 
