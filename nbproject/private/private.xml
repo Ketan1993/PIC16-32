@@ -3,15 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/W:/wimera/ethernet/main.c</file>
-            <file>file:/W:/wimera/ethernet/systems.c</file>
-            <file>file:/W:/wimera/ethernet/systems.h</file>
-            <file>file:/W:/wimera/ethernet/main.h</file>
-            <file>file:/W:/wimera/ethernet/board.c</file>
-            <file>file:/W:/wimera/ethernet/ethernet/enc28j60.c</file>
-            <file>file:/W:/wimera/ethernet/pin_config.h</file>
-            <file>file:/W:/wimera/ethernet/pin_manager/pin_manager.c</file>
-            <file>file:/W:/wimera/ethernet/ethernet/enc28j60.h</file>
+            <file>file:/E:/personal/PIC24_Dev/uart/uart.c</file>
+            <file>file:/E:/personal/PIC24_Dev/board.c</file>
+            <file>file:/E:/personal/PIC24_Dev/ethernet/enc28j60.c</file>
+            <file>file:/E:/personal/PIC24_Dev/pin_manager/pin_manager.c</file>
+            <file>file:/E:/personal/PIC24_Dev/systems.c</file>
+            <file>file:/E:/personal/PIC24_Dev/delay.c</file>
+            <file>file:/E:/personal/PIC24_Dev/uart/uart.h</file>
+            <file>file:/E:/personal/PIC24_Dev/main.h</file>
+            <file>file:/E:/personal/PIC24_Dev/lcd/lcd.h</file>
+            <file>file:/E:/personal/PIC24_Dev/lcd/lcd.c</file>
+            <file>file:/E:/personal/PIC24_Dev/common_def.h</file>
+            <file>file:/E:/personal/PIC24_Dev/main.c</file>
+            <file>file:/E:/personal/PIC24_Dev/delay.h</file>
+            <file>file:/E:/personal/PIC24_Dev/timer/timer.h</file>
+            <file>file:/E:/personal/PIC24_Dev/timer/timer.c</file>
         </group>
     </open-files>
 </project-private>

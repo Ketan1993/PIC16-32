@@ -13,3 +13,9 @@ void delay_us(int delay_count) {
         __delay_us(1);
     }
 }
+void delay_sec(int delay_count) {
+    int i = 0;
+    for (i = 0; i < delay_count; i++) {
+        delay_ms(1000);
+    }
+}

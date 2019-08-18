@@ -53,6 +53,18 @@ extern "C" {
 #define RA7_Toggle()                   do{ LATAbits.LATA7 = ~LATAbits.LATA7; }while(0)
 
 
+    /* UART pin mapping with MCU
+     * ---------  ---------
+     * DEV pin  |  MCU PIN  | 
+     * --------   ---------  
+     * P49_RXB  |  RF4
+     * P50_TXB  |  RF5
+     */
+
+#define RF4_SetDigitalInput()         do { TRISFbits.TRISF4 = 1;} while(0)
+#define RF5_SetDigitalOutput()        do { TRISFbits.TRISF5 = 1;} while(0)
+#define RF5_Toggle()                  do { LATFbits.LATF5 = ~LATFbits.LATF5;} while(0)
+
     void PIN_MANAGER_initialaztion(void);
 
 #ifdef	__cplusplus
