@@ -12,8 +12,6 @@ bool LCD_Clear(lcdDisplay *dis);
 bool LCD_Data(char WriteBuf);
 
 /* Private variables ************************************************/
-static uint8_t row;
-static uint8_t column;
 static __eds__ unsigned int __attribute__((noload, section("epmp_cs1"), address(CS1_BASE_ADDRESS))) ADDR0 __attribute__((space(eds)));
 static __eds__ unsigned int __attribute__((noload, section("epmp_cs1"), address(CS1_BASE_ADDRESS))) ADDR1 __attribute__((space(eds)));
 
@@ -59,9 +57,6 @@ bool LCD_Clear(lcdDisplay *dis) {
     //return to home cursor
     dis->LCD_CommandWrite(LCD_COMMAND_RETURN_HOME);
 
-
-    row = 0;
-    column = 0;
     return true;
 }
 
@@ -70,7 +65,8 @@ bool LcdMasterWriteString(lcdDisplay *disInstance, const char *buf, uint8_t line
     displayInt *display = (displayInt*) disInstance;
 
     uint8_t index_len = 0;
-
+    uint8_t row = 0;
+    uint8_t column = 0;
     if (!display) {
         return false;
     }
@@ -80,7 +76,7 @@ bool LcdMasterWriteString(lcdDisplay *disInstance, const char *buf, uint8_t line
     uint8_t len = strlen((const char*) buf);
 
 
-    if (line == 0) {
+    if (line == 1) {
         display->dis.LCD_CommandWrite(LCD_COMMAND_ROW_0_HOME);
     } else {
         display->dis.LCD_CommandWrite(LCD_COMMAND_ROW_1_HOME);
@@ -90,7 +86,6 @@ bool LcdMasterWriteString(lcdDisplay *disInstance, const char *buf, uint8_t line
     }
 
     while (index_len != len) {
-
 
         if (index_len >= LCD_LENGTH) {
             break;
