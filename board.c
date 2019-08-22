@@ -27,15 +27,29 @@ void Board_Initialization(void) {
     delay_sec(2);
 }
 
+static void checResetReason(void) {
+    if (RCONbits.POR) {
+        RA1_Toggle();
+        RCONbits.POR = 0;
+        Nop();
+    }
+    if (RCONbits.SWR) {
+        RA2_Toggle();
+        RCONbits.SWR = 0;
+        Nop();
+    }
+}
+
 void Main_Application(void) {
     Board_Initialization(); // this function will initialize driver sub routine for the controller
-    char *lcdString = "HELLO THIS IS THE LCD TEST !!! ";
-
+    char lcdString[] = "HELLO THIS IS THE LCD TEST !!! ";
+    char uartString[] = "HELLO THIS IS THE UART MODULE TEST IS GOING ON !!! THANK YOU!";
+    checResetReason();
     while (1) {
         RA0_Toggle();
         delay_sec(1);
-        LcdMasterWriteString(g_globalStrcut.display, lcdString, 1, true);
-        UART_Transmite(g_globalStrcut.uart, '1');
 
+        LcdMasterWriteString(g_globalStrcut.display, lcdString, 1, true);
+        UART_Transmite(g_globalStrcut.uart, (uint8_t*) & uartString, strlen((const char *) uartString), true);
     }
 }

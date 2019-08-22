@@ -2,10 +2,15 @@
 
 void PIN_MANAGER_initialaztion(void) {
     RA0_SetDigitalOutput(); //RA0 as output
-
-    
+    Nop();
+    RA1_SetDigitalOutput();  //check the power on reset happen 
+    Nop();
+    RA2_SetDigitalOutput();  //check the software reset happen 
+    Nop();
     RF4_SetDigitalInput();    //RX PIN
+    Nop();
     RF5_SetDigitalOutput();   //TX PIN
+    Nop();
     
     __builtin_write_OSCCONL(OSCCON & 0xbf);
 

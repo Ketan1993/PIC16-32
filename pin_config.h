@@ -62,9 +62,18 @@ extern "C" {
      */
 
 #define RF4_SetDigitalInput()         do { TRISFbits.TRISF4 = 1;} while(0)
-#define RF5_SetDigitalOutput()        do { TRISFbits.TRISF5 = 1;} while(0)
-#define RF5_Toggle()                  do { LATFbits.LATF5 = ~LATFbits.LATF5;} while(0)
+#define RF5_SetDigitalOutput()        do { TRISFbits.TRISF5 = 0;} while(0)
 
+
+    /* VARIABLE POT pin mapping with MCU
+     * ---------  ---------
+     * DEV pin  |  MCU PIN  | 
+     * --------   ---------  
+     * P20_RB5  |  RB5
+     */
+    
+#define RB5_SetDigitalInput()       do{ TRISBbits.TRISB5 = 1; } while(0)
+    
     void PIN_MANAGER_initialaztion(void);
 
 #ifdef	__cplusplus

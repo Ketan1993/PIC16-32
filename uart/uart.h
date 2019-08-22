@@ -19,13 +19,15 @@ extern "C" {
 #define PERIPHERAL_FREQUENCY        (FCY/2)
 #define UART_BAUDRATE               ((long)9600)
 
+#define TX_RX_MAX_LEN               254        //254 character 
+//#define BRG_LSPEED
     //if BAUDRATE SPEED is high 
-#ifdef BRG_HSPEED
+#ifdef BRG_LSPEED
 #define DIVIDER_FACTOR               16
-#define BAUDARATE               (((PERIPHERAL_FREQUENCY) / ((DIVIDER_FACTOR) * (UART_BAUDRATE))) - 1)
+#define BAUDARATE(brg)               ((((PERIPHERAL_FREQUENCY)/(brg))/DIVIDER_FACTOR) - 1)          //(((PERIPHERAL_FREQUENCY) / ((DIVIDER_FACTOR) * (brg))) - 1)
 #else
 #define DIVIDER_FACTOR               4
-#define BAUDARATE(brg)               (((PERIPHERAL_FREQUENCY) / ((DIVIDER_FACTOR) * (brg))) - 1)
+#define BAUDARATE(brg)               ((((PERIPHERAL_FREQUENCY)/(brg))/DIVIDER_FACTOR) - 1)  //(((PERIPHERAL_FREQUENCY) / ((DIVIDER_FACTOR) * (brg))) - 1)
 #endif    
 
     //UART parity bit configure
@@ -52,11 +54,13 @@ extern "C" {
         bool (*UART_Close)(UART_Internal *handler);
         bool (*UART_Baudate)(long Baudrate);
         bool (*UART_EnableForTxRx)(void);
+        bool (*UART_TransmiteEn)(void);
         bool Uart_Allocated;
+        uint8_t RxTxlen; 
     };
 
     typedef UART_Internal *(UART_Initilaztion) (uint8_t inst);
-    void UART_Transmite(UART_Internal *uart, uint8_t data);
+    void UART_Transmite(UART_Internal *uart, const uint8_t* data, uint8_t len, bool flag);
     UART_Initilaztion UART_CoreDriverInit;
 
 #ifdef	__cplusplus
