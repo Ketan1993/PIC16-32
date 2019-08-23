@@ -4,6 +4,7 @@
 #include "delay.h"
 #include "uart/uart.h"
 #include "lcd/lcd.h"
+#include "utility/serial_log.h"
 
 void SYSTEMS_Initialization(void) {
     SYSTEMS_Clock(); //intialization for the systems clock.
@@ -24,7 +25,7 @@ void Board_Initialization(void) {
     sprintf(buf, "WELCOME TO TEST    VER %s", SOFTWARE_VERSION);
     LcdMasterWriteString(g_globalStrcut.display, buf, 1, true);
 
-    delay_sec(2);
+    delay_sec(1);
 }
 
 static void checResetReason(void) {
@@ -43,13 +44,16 @@ static void checResetReason(void) {
 void Main_Application(void) {
     Board_Initialization(); // this function will initialize driver sub routine for the controller
     char lcdString[] = "HELLO THIS IS THE LCD TEST !!! ";
-    char uartString[] = "HELLO THIS IS THE UART MODULE TEST IS GOING ON !!! THANK YOU!";
-    checResetReason();
+    char uartString[] = "HELLO THIS IS THE UART TEST !!! ";
+
+    //checResetReason();
     while (1) {
         RA0_Toggle();
         delay_sec(1);
 
         LcdMasterWriteString(g_globalStrcut.display, lcdString, 1, true);
-        UART_Transmite(g_globalStrcut.uart, (uint8_t*) & uartString, strlen((const char *) uartString), true);
+#if LOGLEVEL >= LOG_INFO
+        UART_PRINT(g_globalStrcut.uart, uartString);
+#endif
     }
 }

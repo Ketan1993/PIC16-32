@@ -61,6 +61,7 @@ extern "C" {
 
     typedef UART_Internal *(UART_Initilaztion) (uint8_t inst);
     void UART_Transmite(UART_Internal *uart, const uint8_t* data, uint8_t len, bool flag);
+    int report(UART_Internal *uart, const char *format, ...);
     UART_Initilaztion UART_CoreDriverInit;
 
 #ifdef	__cplusplus

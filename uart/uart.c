@@ -1,6 +1,7 @@
 #include "../common_def.h"
 #include "uart.h"
 
+
 bool UART_SetParityStop(UART1PARITYbits parity, UART1STOPbits stopBit);
 bool UART_CloseDriver(UART_Internal *handler);
 bool UART_SetBaudate(long Baudrate);
@@ -53,7 +54,7 @@ bool UART_Enable(void) {
 
 void UART_Transmite(UART_Internal *uart, const uint8_t* data, uint8_t len, bool flag) {
 
-    UART_Instance *pUart = (UART_Instance*)uart;
+    UART_Instance *pUart = (UART_Instance*) uart;
 
     if (!pUart) {
         return;
@@ -65,16 +66,40 @@ void UART_Transmite(UART_Internal *uart, const uint8_t* data, uint8_t len, bool 
     pUart->uart.UART_TransmiteEn();
 
     while (len-- > 0) {
-        
-        U2TXREG = *data++;  //shoud be in interrupt mode
-        
+
+        U2TXREG = *data++; //shoud be in interrupt mode
+
         while (!U2STAbits.TRMT);
     }
-    if(flag)
-    {
+    if (flag) {
         U2TXREG = '\r'; //send new line character
         while (!U2STAbits.TRMT);
     }
+}
+
+int report(UART_Internal *uart, const char *format, ...) {
+    UART_Instance *pUart = (UART_Instance*) uart;
+
+    uint8_t len = 0;
+    char buf[254] = {'\0'};
+    
+    if (!pUart) {
+        return -1;
+    }
+    va_list arg;
+    
+    va_start(arg, format);
+    
+    len = vsprintf(buf, format, arg);
+    
+    if(len > 254 || len < 0)
+    {
+        return -2;
+    }
+    
+    UART_Transmite(uart, (uint8_t*)buf, len, true);
+    
+    return len;
 }
 
 UART_Internal *UART_CoreDriverInit(uint8_t inst) {
