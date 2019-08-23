@@ -22,10 +22,15 @@ extern "C" {
 #endif
 
 
-
+    /* CPU is running on 32Mhz frequency 
+     * pheriperal frequency will be /2 of main function frequency
+     * pheriperal frequency used to configure the I2C, SPI, UART protocal 
+     */
 #define FCY 32000000UL
 
-
+    //error code 
+#define SUCCESS           0        /*to use return success on the successfully driver call*/
+#define FAIL             -1        /*to use failure condition of the driver */
 
 #ifdef	__cplusplus
 }
